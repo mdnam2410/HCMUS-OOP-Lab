@@ -9,8 +9,9 @@ public:
 	static int s_instance_count;
 	
 private:
-	Point* m_topLeft;
-	Point* m_bottomRight;
+	Point* m_top_left;
+	Point* m_bottom_right;
+	
 public:
 	Rectangle();
 
@@ -20,19 +21,17 @@ public:
 
 	~Rectangle();
 
-	Point* TopLeft();
+	Point* top_left();
 
-	Point* BottomRight();
+	Point* bottom_right();
 
-	void SetTopLeft(const Point& p);
+	void set_top_left(const Point& p);
 	
-	void SetBottomRight(const Point& p);
+	void set_bottom_right(const Point& p);
 
-	float Perimeter();
+	float perimeter();
 
-	float Area();
-
-	void Info();
+	float area();
 };
 
 #endif

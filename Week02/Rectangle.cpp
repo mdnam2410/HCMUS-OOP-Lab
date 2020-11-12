@@ -4,74 +4,66 @@ int Rectangle::s_instance_count = 0;
 
 Rectangle::Rectangle()
 {
-	m_topLeft = new Point(1.0F, 1.0F);
-	m_bottomRight = new Point(10.0F, 10.0F);
+	m_top_left = new Point(1.0F, 1.0F);
+	m_bottom_right = new Point(10.0F, 10.0F);
 	++s_instance_count;
 }
 
 Rectangle::Rectangle(const Point& topLeft, const Point& bottomRight)
 {
-	m_topLeft = new Point(topLeft.X(), topLeft.Y());
-	m_bottomRight = new Point(bottomRight.X(), bottomRight.Y());
+	m_top_left = new Point(topLeft.X(), topLeft.Y());
+	m_bottom_right = new Point(bottomRight.X(), bottomRight.Y());
 	++s_instance_count;
 }
 
 Rectangle::Rectangle(const Rectangle& r)
 {
-	m_topLeft = new Point;
-	m_bottomRight = new Point;
+	m_top_left = new Point;
+	m_bottom_right = new Point;
 
-	*(m_topLeft) = *(r.m_topLeft);
-	*(m_bottomRight) = *(r.m_bottomRight);
+	*(m_top_left) = *(r.m_top_left);
+	*(m_bottom_right) = *(r.m_bottom_right);
 	
 	++s_instance_count;
 }
 
 Rectangle::~Rectangle()
 {
-	delete m_topLeft;
-	delete m_bottomRight;
+	delete m_top_left;
+	delete m_bottom_right;
 
-	m_topLeft = m_bottomRight = nullptr;
+	m_top_left = m_bottom_right = nullptr;
 	--s_instance_count;
 }
 
-Point* Rectangle::TopLeft()
+Point* Rectangle::top_left()
 {
-	return m_topLeft;
+	return m_top_left;
 }
 
-Point* Rectangle::BottomRight()
+Point* Rectangle::bottom_right()
 {
-	return m_bottomRight;
+	return m_bottom_right;
 }
 
-void Rectangle::SetTopLeft(const Point& p)
+void Rectangle::set_top_left(const Point& p)
 {
-	*(m_topLeft) = p;
+	*(m_top_left) = p;
 }
 
-void Rectangle::SetBottomRight(const Point& p)
+void Rectangle::set_bottom_right(const Point& p)
 {
-	*(m_bottomRight) = p;
+	*(m_bottom_right) = p;
 }
 
-float Rectangle::Perimeter()
+float Rectangle::perimeter()
 {
-	Point topRight(m_topLeft->X(), BottomRight()->Y());
-	return 2.0F* (topRight.CalcDistanceTo(*m_topLeft) + topRight.CalcDistanceTo(*m_bottomRight));
+	Point topRight(m_top_left->X(), bottom_right()->Y());
+	return 2.0F* (topRight.CalcDistanceTo(*m_top_left) + topRight.CalcDistanceTo(*m_bottom_right));
 }
 
-float Rectangle::Area()
+float Rectangle::area()
 {
-	Point topRight(m_topLeft->X(), BottomRight()->Y());
-	return topRight.CalcDistanceTo(*m_topLeft) * topRight.CalcDistanceTo(*m_bottomRight);
-}
-
-void Rectangle::Info()
-{
-	std::cout << "\tDiem trai tren: " << *(TopLeft()) << '\n';
-    std::cout << "\tDiem phai duoi: " << *(BottomRight()) << '\n';
-    std::cout << "\tChu vi: " 		  << Perimeter() << '\n';
-    std::cout << "\tDien tich: " 	  << Area() << '\n';
+	Point topRight(m_top_left->X(), bottom_right()->Y());
+	return topRight.CalcDistanceTo(*m_top_left) * topRight.CalcDistanceTo(*m_bottom_right);
 }
