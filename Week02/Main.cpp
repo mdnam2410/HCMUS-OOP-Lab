@@ -39,6 +39,22 @@ void illustrate_line()
     std::cout << "So duong thang sau khi xoa duong thang 2: " << Line::s_instance_count << '\n';
 }
 
+void illustrate_rectangle()
+{
+    Rectangle* r1 = new Rectangle;
+    Rectangle* r2 = new Rectangle(Point(1, 8), Point(2, 10));
+
+    std::cout << "Da tao ra " << Rectangle::s_instance_count << " doi tuong Rectangle:\n"
+                 "Rectangle r1: " << *r1 << '\n' <<
+                 "Rectangle r2: " << *r2 << '\n';
+
+    delete r1;
+    std::cout << "So doi tuong sau khi da xoa r1: " << Rectangle::s_instance_count << '\n';
+    
+    delete r2;
+    std::cout << "So doi tuong sau khi da xoa r2: " << Rectangle::s_instance_count << '\n';
+}
+
 int main()
 {
     // srand((unsigned int) time(nullptr));
@@ -50,5 +66,6 @@ int main()
 
     //illustrate_point();
     //illustrate_line();
+    //illustrate_rectangle();
     return 0;
 }

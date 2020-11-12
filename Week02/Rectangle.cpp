@@ -67,3 +67,8 @@ float Rectangle::area()
 	Point topRight(m_top_left->X(), bottom_right()->Y());
 	return topRight.CalcDistanceTo(*m_top_left) * topRight.CalcDistanceTo(*m_bottom_right);
 }
+
+std::ostream& operator<<(std::ostream& os, const Rectangle& r)
+{
+	std::cout << "Top left: " << *(r.m_top_left) << ", bottom right: " << *(r.m_bottom_right);
+}

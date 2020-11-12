@@ -32,6 +32,8 @@ public:
 	float perimeter();
 
 	float area();
+
+	friend std::ostream& operator<<(std::ostream& os, const Rectangle& r);
 };
 
 #endif
