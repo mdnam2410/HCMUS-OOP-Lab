@@ -12,7 +12,7 @@ Point::Point()
 	++s_instance_count;
 }
 
-Point::Point(const float x, const float y)
+Point::Point(float x, float y)
 {
 	m_x = x;
 	m_y = y;

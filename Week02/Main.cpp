@@ -113,11 +113,6 @@ int main()
 {
     srand((unsigned int) time(nullptr));
 
-    // Dice d;
-    // for (int i = 0; i < 103; ++i)
-    //     std::cout << d.roll() << (i == 102 ? '\n' : ' ');
-    // std::cout << d.roll_times() << '\n';
-
     illustrate_point();
     press_enter_to_continue();
 

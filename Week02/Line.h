@@ -13,10 +13,11 @@ public:
 private:
     Point m_start;
     Point m_end;
+
 public:
     Line();
 
-    Line(Point start, Point end);
+    Line(const Point& start, const Point& end);
 
     Line(const Line& line);
 

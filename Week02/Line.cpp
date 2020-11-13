@@ -8,7 +8,7 @@ Line::Line()
     ++s_instance_count;
 }
 
-Line::Line(Point start, Point end)
+Line::Line(const Point& start, const Point& end)
 {
     m_start = start;
     m_end = end;
