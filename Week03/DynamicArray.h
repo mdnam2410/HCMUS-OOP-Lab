@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DYNAMICARRAY_H
+#define DYNAMICARRAY_H
 
 #include <iostream>
 
@@ -26,3 +27,5 @@ public:
 
     void Info();
 };
+
+#endif

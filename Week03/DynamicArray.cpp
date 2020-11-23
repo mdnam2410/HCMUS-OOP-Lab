@@ -22,17 +22,12 @@ DynamicArray::DynamicArray(const int* a, int n)
 
 DynamicArray::DynamicArray(const DynamicArray& da)
 {
-    // Prevent self-copy
-    if (this != &da) {
-        if (m_a)
-            delete m_a;
-        m_a = new int[INITIAL_SIZE];
-        m_len = da.m_len;
-        m_max = da.m_max;
+    m_a = new int[INITIAL_SIZE];
+    m_len = da.m_len;
+    m_max = da.m_max;
 
-        for (int i = 0; i < INITIAL_SIZE && i < m_len; ++i)
-            m_a[i] = da.m_a[i];
-    }
+    for (int i = 0; i < INITIAL_SIZE && i < m_len; ++i)
+        m_a[i] = da.m_a[i];
 }
 
 DynamicArray::~DynamicArray()

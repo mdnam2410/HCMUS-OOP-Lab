@@ -11,11 +11,6 @@ Rectangle::Rectangle()
 
 Rectangle::Rectangle(const Point& topLeft, const Point& bottomRight)
 {
-	if (m_top_left)
-		delete m_top_left;
-	if (m_bottom_right)
-		delete m_bottom_right;
-	
 	m_top_left = new Point(topLeft);
 	m_bottom_right = new Point(bottomRight);
 	++s_instance_count;
@@ -23,11 +18,6 @@ Rectangle::Rectangle(const Point& topLeft, const Point& bottomRight)
 
 Rectangle::Rectangle(const Rectangle& r)
 {
-	if (m_top_left)
-		delete m_top_left;
-	if (m_bottom_right)
-		delete m_bottom_right;
-	
 	m_top_left = new Point(*r.m_top_left);
 	m_bottom_right = new Point(*r.m_bottom_right);
 	++s_instance_count;
