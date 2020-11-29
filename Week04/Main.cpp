@@ -20,7 +20,7 @@ T input(std::string prompt)
     return obj;
 }
 
-void pressEnterToContinue()
+void askIfContinue()
 {
     char c;
     std::cout << "Nhan Y (tiep tuc) hoac N (thoat): ";
@@ -171,7 +171,7 @@ int main()
     {
         illustrations[i]();
         if (i != 10 - 1)
-            pressEnterToContinue();
+            askIfContinue();
     }
     return 0;
 }
