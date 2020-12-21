@@ -57,9 +57,10 @@ void DynamicArray::resize(int new_size)
     if (new_size < 0)
         throw "Cannot resize with negative value";
     m_size = new_size;
-    int level = new_size / INITIAL_SIZE;
-    m_max = (level + 1) * INITIAL_SIZE;
-    reallocate(m_max);
+    if (new_size > m_max) {
+        m_max = (new_size / INITIAL_SIZE + 1) * INITIAL_SIZE;
+        reallocate(m_max);
+    }
 }
 
 void DynamicArray::push_back(int value)
