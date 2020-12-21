@@ -33,15 +33,13 @@ DynamicArray::~DynamicArray()
 
 void DynamicArray::reallocate(int new_max_size)
 {
-    if (new_max_size > 0) {
-        int *temp = new int[new_max_size]{};
-        if (m_data) {
-            for (int i = 0; i < m_size; ++i)
-                temp[i] = m_data[i];
-            delete[] m_data;
-        }
-        m_data = temp;
+    int *temp = new int[new_max_size]{};
+    if (m_data) {
+        for (int i = 0; i < m_size; ++i)
+            temp[i] = m_data[i];
+        delete[] m_data;
     }
+    m_data = temp;
 }
 
 bool DynamicArray::is_empty() const

@@ -13,7 +13,8 @@ private:
 
     /**
      * @brief Reallocate m_data with new_max_size elements, m_size and m_max are unchanged.
-     *        If new_max_size <= 0, nothing is changed.
+     *        new_max_size is expected to be greater than m_size and m_max, so m_size and
+     *        m_max need to be adjusted before using this function.
      * 
      * @param new_max_size New size to reallocate
      */
