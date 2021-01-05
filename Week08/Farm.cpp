@@ -9,19 +9,18 @@ Farm::Farm(int numOfLivestocks) : m_livestocks{}
 {
     Random rAnimal;
     Random rGender;
-    m_livestocks.reserve(numOfLivestocks);
 
     for (int i = 0; i < numOfLivestocks; ++i) {
         int gender = rGender.next(2);
         switch (rAnimal.next(3)) {
         case Livestock::CATTLE:
-            m_livestocks.push_back(new Cattle(gender));
+            m_cattles.push_back(new Cattle(gender));
             break;
         case Livestock::SHEEP:
-            m_livestocks.push_back(new Sheep(gender));
+            m_sheeps.push_back(new Sheep(gender));
             break;
         case Livestock::GOAT:
-            m_livestocks.push_back(new Goat(gender));
+            m_goats.push_back(new Goat(gender));
             break;
         }
     }
@@ -29,72 +28,69 @@ Farm::Farm(int numOfLivestocks) : m_livestocks{}
 
 Farm::~Farm()
 {
-    for (auto &animal : m_livestocks)
-        delete animal;
+    Farm::cleanUp(m_cattles);
+    Farm::cleanUp(m_sheeps);
+    Farm::cleanUp(m_goats);
 }
 
 // -- Public member functions
 
 int Farm::numOfLivestocks() const
 {
-    return m_livestocks.size();
+    return numOfCattles() + numOfGoats() + numOfSheeps();
 }
 
 int Farm::numOfCattles() const
 {
-    return countAnimal(Livestock::CATTLE);
+    return m_cattles.size();
 }
 
 int Farm::numOfSheeps() const
 {
-    return countAnimal(Livestock::SHEEP);
+    return m_sheeps.size();
 }
 
 int Farm::numOfGoats() const
 {
-    return countAnimal(Livestock::GOAT);
+    return m_goats.size();
 }
 
 double Farm::totalMilk() const
 {
-    double count = 0.0;
-    for (const auto &animal : m_livestocks)
-        count += animal->produceMilk();
-    return count;
+    return Farm::milk(m_cattles) + Farm::milk(m_sheeps) + Farm::milk(m_goats);
 }
 
 void Farm::check() const
 {
     int i = 0;
-    for (const auto &animal : m_livestocks) {
-        std::cout << "[#" << i++ << "]: "
-                  << (animal->gender() == MALE ? "male" : "female") << ", "
-                  << (animal->isHungry() ? "is hungry" : "not hungry") << ", "
+    for (const auto &cattle : m_cattles) {
+        std::cout << "[#" << i++ << "]: cattle, "
+                  << (cattle->gender() == MALE ? "male" : "female") << ", "
+                  << (cattle->isHungry() ? "is hungry" : "not hungry") << ", "
                   << "make sound: ";
-        animal->makeSound();
+        cattle->makeSound();
+    }
+
+    for (const auto &sheep : m_sheeps) {
+        std::cout << "[#" << i++ << "]: sheep, "
+                  << (sheep->gender() == MALE ? "male" : "female") << ", "
+                  << (sheep->isHungry() ? "is hungry" : "not hungry") << ", "
+                  << "make sound: ";
+        sheep->makeSound();
+    }
+
+    for (const auto &goat : m_goats) {
+        std::cout << "[#" << i++ << "]: goat, "
+                  << (goat->gender() == MALE ? "male" : "female") << ", "
+                  << (goat->isHungry() ? "is hungry" : "not hungry") << ", "
+                  << "make sound: ";
+        goat->makeSound();
     }
 }
 
 void Farm::breedingSeason()
 {
-    int oldSize = m_livestocks.size();
-    for (int i = 0; i < oldSize; ++i) {
-        if (m_livestocks[i]->gender() == FEMALE) {
-            Random r;
-            int numOfOffsprings = r.next(m_livestocks[i]->maxOffspringsDeliverOnce());
-            for (int j = 0; j < numOfOffsprings; ++j)
-                m_livestocks.push_back(m_livestocks[i]->giveBirthOnce());
-        }
-    }
-}
-
-// -- Private member functions
-
-int Farm::countAnimal(int type) const
-{
-    int count = 0;
-    for (const auto &animal : m_livestocks)
-        if (animal->type() == type)
-            ++count;
-    return count;
+    Farm::breed(m_cattles);
+    Farm::breed(m_sheeps);
+    Farm::breed(m_goats);
 }

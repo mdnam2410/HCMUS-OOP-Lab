@@ -12,16 +12,13 @@ public:
 
     std::vector<Cattle*> giveBirth() const;
 
-    //Cattle** t_giveBirth(int &numOfOffsprings) const;
+    double produceMilk() const;
 
-    double produceMilk() const override;
+    void makeSound() const;
 
-    void makeSound() const override;
+    int type() const;
 
-    int type() const override;
-
-    Cattle* giveBirthOnce() const override;
-private:
+    Cattle* giveBirthOnce() const;
 };
 
 #endif

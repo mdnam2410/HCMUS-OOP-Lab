@@ -20,7 +20,7 @@ public:
 
     enum { CATTLE, SHEEP, GOAT };
 
-    virtual ~Livestock();
+    ~Livestock();
 
     bool gender() const;
 
@@ -29,27 +29,6 @@ public:
     int maxOffspringsDeliverOnce() const;
 
     double maxMilkSupply() const;
-
-    virtual double produceMilk() const = 0;
-
-    virtual void makeSound() const = 0;
-
-    virtual int type() const = 0;
-
-    virtual Livestock* giveBirthOnce() const = 0;
-
-    //virtual int maxOffspringsDeliverOnce() const;
-
-    //virtual std::vector<Livestock*> giveBirth() const;
-
-    /**
-     * @brief Return a list of new born offsprings and modify the variable numOfOffsprings
-     * 
-     * @param numOfOffsprings Will be modified to the number of offsprings that the function
-     *                        creates
-     * @return A list of new Livestock* object, nullptr if fail
-     */
-    //virtual Livestock** t_giveBirth(int &numOfOffsprings) const;
 };
 
 #endif

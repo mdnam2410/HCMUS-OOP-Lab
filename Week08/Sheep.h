@@ -12,14 +12,13 @@ public:
 
     std::vector<Sheep*> giveBirth() const;
 
-    double produceMilk() const override;
+    double produceMilk() const;
 
-    void makeSound() const override;
+    void makeSound() const;
 
-    int type() const override;
+    int type() const;
 
-    Sheep* giveBirthOnce() const override;
-private:
+    Sheep* giveBirthOnce() const;
 };
 
 #endif
